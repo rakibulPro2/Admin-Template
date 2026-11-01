@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Settings | Nexus Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Light mode by default; applies the saved choice before the page paints -->
+  <script>
+    (function () {
+      try { document.documentElement.classList.toggle('dark', localStorage.getItem('theme') === 'dark'); } catch (e) {}
+    })();
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Only sets the font family; everything else is Tailwind utilities.
+    tailwind.config = { darkMode: 'class', theme: { extend: { fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] } } } };
+  </script>
+</head>
+<body class="bg-slate-50 dark:bg-zinc-950 font-sans text-slate-700 dark:text-slate-300 antialiased selection:bg-indigo-500/40 selection:text-white">
+
+  <!-- Mobile sidebar overlay -->
+  <div id="overlay" class="fixed inset-0 z-30 hidden bg-black/60 backdrop-blur-sm lg:hidden"></div>
+
+  <!-- ================= SIDEBAR (same on every page) ================= -->
+  <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 flex w-64 -translate-x-full flex-col border-r border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-zinc-950 p-4 transition-transform duration-300 lg:translate-x-0" aria-label="Sidebar">
+    <div class="flex items-center justify-between px-2 py-2">
+      <a href="index.html" class="flex items-center gap-2.5 text-lg font-bold text-slate-900 dark:text-white">
+        <span class="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-indigo-500 to-violet-500 shadow-lg shadow-indigo-500/30 text-white"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg></span>
+        Nexus
+      </a>
+      <button id="close-btn" type="button" class="grid h-9 w-9 place-items-center rounded-lg text-slate-600 dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white lg:hidden" aria-label="Close menu"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+
+    <nav class="mt-8 flex-1 space-y-1" aria-label="Main">
+      <p class="px-3 pb-2 text-xs font-semibold text-slate-500">Menu</p>
+        <a href="index.html" class="group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-300 text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white"><span class="transition-colors duration-300 text-slate-400 group-hover:text-indigo-600 dark:text-slate-500 dark:group-hover:text-indigo-400"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3h7v9H3zM14 3h7v5h-7zM14 12h7v9h-7zM3 16h7v5H3z"/></svg></span>Dashboard</a>
+        <a href="analytics.html" class="group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-300 text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white"><span class="transition-colors duration-300 text-slate-400 group-hover:text-indigo-600 dark:text-slate-500 dark:group-hover:text-indigo-400"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg></span>Analytics</a>
+        <a href="users.html" class="group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-300 text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white"><span class="transition-colors duration-300 text-slate-400 group-hover:text-indigo-600 dark:text-slate-500 dark:group-hover:text-indigo-400"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Users</a>
+        <a href="products.html" class="group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-300 text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white"><span class="transition-colors duration-300 text-slate-400 group-hover:text-indigo-600 dark:text-slate-500 dark:group-hover:text-indigo-400"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg></span>Products</a>
+        <a href="settings.html" class="group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-300 active bg-indigo-500/10 text-indigo-700 ring-1 ring-indigo-400/20 dark:text-white" aria-current="page"><span class="transition-colors duration-300 text-indigo-600 dark:text-indigo-400"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg></span>Settings</a>
+    </nav>
+
+    <!-- User mini-card -->
+    <div class="rounded-2xl border border-slate-200 dark:border-white/5 bg-white shadow-sm shadow-slate-200/70 dark:bg-slate-800/40 dark:shadow-none p-3">
+      <div class="flex items-center gap-3">
+        <span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gradient-to-br from-indigo-500 to-cyan-400 text-sm font-bold text-white">AM</span>
+        <div class="min-w-0 flex-1"><p class="truncate text-sm font-semibold text-slate-900 dark:text-white">Alex Morgan</p><p class="truncate text-xs text-slate-500">alex@nexus.com</p></div>
+        <button type="button" class="grid h-8 w-8 place-items-center rounded-lg text-slate-600 dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-white/5 hover:text-rose-600 dark:hover:text-rose-400" aria-label="Log out"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg></button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ================= MAIN ================= -->
+  <div class="lg:pl-64">
+
+    <!-- Sticky top navbar (same on every page) -->
+    <header class="sticky top-0 z-20 flex h-16 items-center gap-4 border-b border-slate-200 dark:border-white/5 bg-white/70 dark:bg-zinc-950/70 px-4 backdrop-blur-xl sm:px-6">
+      <button id="menu-btn" type="button" class="grid h-10 w-10 place-items-center rounded-xl text-slate-700 dark:text-slate-300 ring-1 ring-slate-900/10 dark:ring-white/10 transition hover:bg-slate-100 dark:hover:bg-white/5 lg:hidden" aria-label="Open menu"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+
+      <nav aria-label="Breadcrumb" class="hidden items-center gap-2 text-sm sm:flex">
+        <a href="index.html" class="text-slate-500 transition hover:text-slate-900 dark:hover:text-white">Home</a><svg class="h-4 w-4 text-slate-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg><span id="crumb" class="font-medium text-slate-900 dark:text-white">Settings</span>
+      </nav>
+
+      <div class="ml-auto flex items-center gap-3">
+        <label class="relative hidden md:block">
+          <span class="sr-only">Search</span>
+          <span class="pointer-events-none absolute inset-y-0 left-3 flex items-center text-slate-500"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span>
+          <input type="search" placeholder="Search anything..." class="w-64 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-slate-800/50 py-2 pl-9 pr-3 text-sm text-slate-900 dark:text-white placeholder-slate-500 outline-none transition-all duration-300 focus:w-80 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/30" />
+        </label>
+        <!-- Light / Dark toggle -->
+        <button id="theme-btn" type="button" class="grid h-10 w-10 place-items-center rounded-xl text-slate-600 ring-1 ring-slate-900/10 transition-all duration-300 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 dark:text-slate-300 dark:ring-white/10 dark:hover:bg-white/5 dark:hover:text-white" aria-label="Switch between light and dark mode">
+          <!-- Sun (shown in dark mode) -->
+          <svg class="hidden h-5 w-5 dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <!-- Moon (shown in light mode) -->
+          <svg class="h-5 w-5 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></svg>
+        </button>
+        <button type="button" class="relative grid h-10 w-10 place-items-center rounded-xl text-slate-700 dark:text-slate-300 ring-1 ring-slate-900/10 dark:ring-white/10 transition-all duration-300 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400" aria-label="Notifications">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg><span class="absolute right-2.5 top-2.5 h-2 w-2 rounded-full bg-rose-500 ring-2 ring-white dark:ring-zinc-950"></span>
+        </button>
+        <button type="button" class="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-indigo-500 to-cyan-400 text-sm font-bold text-white transition-all duration-300 hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400" aria-label="Account">AM</button>
+      </div>
+    </header>
+
+    <!-- ================= PAGE CONTENT: Settings ================= -->
+    <main class="space-y-6 p-4 sm:p-6">
+
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div><h1 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Settings</h1><p class="mt-1 text-sm text-slate-500">Manage your profile, security and notification preferences</p></div>
+      </div>
+      <!-- Tab buttons (switched by assets/js/app.js) -->
+      <div class="flex flex-wrap gap-1 self-start rounded-xl border border-slate-200 bg-white p-1 dark:border-white/5 dark:bg-slate-900/70 sm:w-fit" role="tablist"><button type="button" data-tab="profile" aria-pressed="true" class="rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 bg-indigo-500 text-white shadow">Profile Configuration</button><button type="button" data-tab="security" aria-pressed="false" class="rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">Password & Security</button><button type="button" data-tab="notifications" aria-pressed="false" class="rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">System Alerts</button></div>
+
+      <!-- TAB 1: Profile configuration -->
+      <form data-panel="profile" data-save class="rounded-2xl border border-slate-200 bg-white shadow-sm shadow-slate-200/70 dark:border-white/5 dark:bg-slate-800/40 dark:shadow-none dark:backdrop-blur p-6">
+        <h2 class="font-semibold text-slate-900 dark:text-white">Profile Configuration</h2><p class="text-sm text-slate-500">This information appears on your account.</p>
+        <div class="mt-6 flex items-center gap-4">
+          <div class="relative h-20 w-20 overflow-hidden rounded-full bg-gradient-to-br from-indigo-500 to-cyan-400">
+            <span id="avatar-initials" class="grid h-full w-full place-items-center text-2xl font-bold text-white">AM</span>
+            <img id="avatar-img" alt="Your avatar" class="absolute inset-0 hidden h-full w-full object-cover" /></div>
+          <div class="flex flex-wrap gap-3"><label class="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-medium text-slate-700 transition-all duration-300 hover:bg-slate-100 dark:border-white/10 dark:text-slate-300 dark:hover:bg-white/5 cursor-pointer">Upload photo<input id="avatar-input" type="file" accept="image/*" class="sr-only" /></label>
+            <button type="button" id="avatar-remove" class="rounded-xl px-4 py-2.5 text-sm font-medium text-rose-600 transition hover:bg-rose-500/10 dark:text-rose-400">Remove</button></div>
+        </div>
+        <div class="mt-6 grid gap-5 sm:grid-cols-2"><div><label for="p-name" class="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">Full name</label><input id="p-name" type="text" value="Alex Morgan" placeholder="" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 outline-none transition-all duration-300 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/30 dark:border-white/10 dark:bg-slate-900/60 dark:text-white dark:placeholder-slate-500" /></div><div><label for="p-email" class="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">Email address</label><input id="p-email" type="email" value="alex@nexus.com" placeholder="" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 outline-none transition-all duration-300 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/30 dark:border-white/10 dark:bg-slate-900/60 dark:text-white dark:placeholder-slate-500" /></div><div><label for="p-phone" class="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">Phone</label><input id="p-phone" type="tel" value="+1 (555) 012-3456" placeholder="" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 outline-none transition-all duration-300 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/30 dark:border-white/10 dark:bg-slate-900/60 dark:text-white dark:placeholder-slate-500" /></div><div><label for="p-title" class="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">Job title</label><input id="p-title" type="text" value="Product Manager" placeholder="" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 outline-none transition-all duration-300 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/30 dark:border-white/10 dark:bg-slate-900/60 dark:text-white dark:placeholder-slate-500" /></div>
+          <div class="sm:col-span-2"><label for="p-bio" class="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">Bio</label><textarea id="p-bio" rows="4" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 outline-none transition-all duration-300 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/30 dark:border-white/10 dark:bg-slate-900/60 dark:text-white dark:placeholder-slate-500 resize-none">Product manager focused on building tools teams love to use.</textarea></div></div>
+        <div class="mt-8 flex items-center gap-4"><button type="submit" class="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-violet-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-indigo-500/30 transition-all duration-300 hover:scale-105 hover:shadow-indigo-500/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300">Save profile</button><p class="save-msg hidden text-sm font-medium text-emerald-600 dark:text-emerald-400" role="status">Profile saved</p></div>
+      </form>
+
+      <!-- TAB 2: Password & security -->
+      <div data-panel="security" class="hidden grid gap-6 xl:grid-cols-3">
+        <form id="password-form" data-save class="rounded-2xl border border-slate-200 bg-white shadow-sm shadow-slate-200/70 dark:border-white/5 dark:bg-slate-800/40 dark:shadow-none dark:backdrop-blur p-6 xl:col-span-2">
+          <h2 class="font-semibold text-slate-900 dark:text-white">Change Password</h2><p class="text-sm text-slate-500">Use at least 8 characters with a mix of letters and numbers.</p>
+          <div class="mt-6 grid gap-5 sm:grid-cols-2"><div class="sm:col-span-2"><div><label for="pw-cur" class="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">Current password</label><input id="pw-cur" type="password" value="" placeholder="••••••••" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 outline-none transition-all duration-300 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/30 dark:border-white/10 dark:bg-slate-900/60 dark:text-white dark:placeholder-slate-500" autocomplete="current-password" /></div></div>
+            <div><label for="pw-new" class="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">New password</label><input id="pw-new" type="password" value="" placeholder="At least 8 characters" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 outline-none transition-all duration-300 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/30 dark:border-white/10 dark:bg-slate-900/60 dark:text-white dark:placeholder-slate-500" autocomplete="new-password" /></div><div><label for="pw-confirm" class="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">Confirm new password</label><input id="pw-confirm" type="password" value="" placeholder="Repeat new password" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 outline-none transition-all duration-300 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/30 dark:border-white/10 dark:bg-slate-900/60 dark:text-white dark:placeholder-slate-500" autocomplete="new-password" /></div></div>
+          <p class="form-error mt-4 hidden text-sm font-medium text-rose-600 dark:text-rose-400" role="alert"></p>
+          <div class="mt-8 flex items-center gap-4"><button type="submit" class="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-violet-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-indigo-500/30 transition-all duration-300 hover:scale-105 hover:shadow-indigo-500/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300">Update password</button><p class="save-msg hidden text-sm font-medium text-emerald-600 dark:text-emerald-400" role="status">Password updated</p></div>
+        </form>
+        <form data-save class="rounded-2xl border border-slate-200 bg-white shadow-sm shadow-slate-200/70 dark:border-white/5 dark:bg-slate-800/40 dark:shadow-none dark:backdrop-blur p-6">
+          <h2 class="font-semibold text-slate-900 dark:text-white">Account Security</h2><p class="text-sm text-slate-500">Extra protection for your account.</p>
+          <ul class="mt-2 divide-y divide-slate-200 dark:divide-white/5">
+          <li class="flex items-center justify-between gap-4 py-4"><div><p class="text-sm font-medium text-slate-900 dark:text-white">Two-factor authentication</p><p class="text-xs text-slate-500">Require a code at sign in</p></div>
+            <label class="relative inline-flex shrink-0 cursor-pointer"><input type="checkbox" class="peer sr-only" aria-label="Two-factor authentication" checked />
+              <span class="h-6 w-11 rounded-full bg-slate-300 transition-colors duration-300 after:absolute after:left-0.5 after:top-0.5 after:h-5 after:w-5 after:rounded-full after:bg-white after:shadow after:transition-transform after:duration-300 after:content-[''] peer-checked:bg-indigo-500 peer-checked:after:translate-x-5 peer-focus-visible:ring-2 peer-focus-visible:ring-indigo-400 dark:bg-slate-700"></span></label></li>
+          <li class="flex items-center justify-between gap-4 py-4"><div><p class="text-sm font-medium text-slate-900 dark:text-white">Login alerts</p><p class="text-xs text-slate-500">Email me about new devices</p></div>
+            <label class="relative inline-flex shrink-0 cursor-pointer"><input type="checkbox" class="peer sr-only" aria-label="Login alerts" checked />
+              <span class="h-6 w-11 rounded-full bg-slate-300 transition-colors duration-300 after:absolute after:left-0.5 after:top-0.5 after:h-5 after:w-5 after:rounded-full after:bg-white after:shadow after:transition-transform after:duration-300 after:content-[''] peer-checked:bg-indigo-500 peer-checked:after:translate-x-5 peer-focus-visible:ring-2 peer-focus-visible:ring-indigo-400 dark:bg-slate-700"></span></label></li>
+          <li class="flex items-center justify-between gap-4 py-4"><div><p class="text-sm font-medium text-slate-900 dark:text-white">Session timeout</p><p class="text-xs text-slate-500">Sign out after 30 min idle</p></div>
+            <label class="relative inline-flex shrink-0 cursor-pointer"><input type="checkbox" class="peer sr-only" aria-label="Session timeout" />
+              <span class="h-6 w-11 rounded-full bg-slate-300 transition-colors duration-300 after:absolute after:left-0.5 after:top-0.5 after:h-5 after:w-5 after:rounded-full after:bg-white after:shadow after:transition-transform after:duration-300 after:content-[''] peer-checked:bg-indigo-500 peer-checked:after:translate-x-5 peer-focus-visible:ring-2 peer-focus-visible:ring-indigo-400 dark:bg-slate-700"></span></label></li>
+          </ul>
+          <div class="mt-8 flex items-center gap-4"><button type="submit" class="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-violet-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-indigo-500/30 transition-all duration-300 hover:scale-105 hover:shadow-indigo-500/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300">Save security</button><p class="save-msg hidden text-sm font-medium text-emerald-600 dark:text-emerald-400" role="status">Saved</p></div>
+        </form>
+      </div>
+
+      <!-- TAB 3: System alerts & notification toggles -->
+      <form data-panel="notifications" data-save class="hidden space-y-6">
+        <div class="grid gap-6 xl:grid-cols-2">
+          <div class="rounded-2xl border border-slate-200 bg-white shadow-sm shadow-slate-200/70 dark:border-white/5 dark:bg-slate-800/40 dark:shadow-none dark:backdrop-blur p-6"><h2 class="font-semibold text-slate-900 dark:text-white">Email Alerts</h2><p class="text-sm text-slate-500">Messages sent to your inbox.</p>
+            <ul class="mt-2 divide-y divide-slate-200 dark:divide-white/5">
+          <li class="flex items-center justify-between gap-4 py-4"><div><p class="text-sm font-medium text-slate-900 dark:text-white">Account activity</p><p class="text-xs text-slate-500">Sign-ins and profile changes</p></div>
+            <label class="relative inline-flex shrink-0 cursor-pointer"><input type="checkbox" class="peer sr-only" aria-label="Account activity" checked />
+              <span class="h-6 w-11 rounded-full bg-slate-300 transition-colors duration-300 after:absolute after:left-0.5 after:top-0.5 after:h-5 after:w-5 after:rounded-full after:bg-white after:shadow after:transition-transform after:duration-300 after:content-[''] peer-checked:bg-indigo-500 peer-checked:after:translate-x-5 peer-focus-visible:ring-2 peer-focus-visible:ring-indigo-400 dark:bg-slate-700"></span></label></li>
+          <li class="flex items-center justify-between gap-4 py-4"><div><p class="text-sm font-medium text-slate-900 dark:text-white">New sales</p><p class="text-xs text-slate-500">Every new order</p></div>
+            <label class="relative inline-flex shrink-0 cursor-pointer"><input type="checkbox" class="peer sr-only" aria-label="New sales" checked />
+              <span class="h-6 w-11 rounded-full bg-slate-300 transition-colors duration-300 after:absolute after:left-0.5 after:top-0.5 after:h-5 after:w-5 after:rounded-full after:bg-white after:shadow after:transition-transform after:duration-300 after:content-[''] peer-checked:bg-indigo-500 peer-checked:after:translate-x-5 peer-focus-visible:ring-2 peer-focus-visible:ring-indigo-400 dark:bg-slate-700"></span></label></li>
+          <li class="flex items-center justify-between gap-4 py-4"><div><p class="text-sm font-medium text-slate-900 dark:text-white">Weekly report</p><p class="text-xs text-slate-500">Summary every Monday</p></div>
+            <label class="relative inline-flex shrink-0 cursor-pointer"><input type="checkbox" class="peer sr-only" aria-label="Weekly report" />
+              <span class="h-6 w-11 rounded-full bg-slate-300 transition-colors duration-300 after:absolute after:left-0.5 after:top-0.5 after:h-5 after:w-5 after:rounded-full after:bg-white after:shadow after:transition-transform after:duration-300 after:content-[''] peer-checked:bg-indigo-500 peer-checked:after:translate-x-5 peer-focus-visible:ring-2 peer-focus-visible:ring-indigo-400 dark:bg-slate-700"></span></label></li>
+          <li class="flex items-center justify-between gap-4 py-4"><div><p class="text-sm font-medium text-slate-900 dark:text-white">Product news</p><p class="text-xs text-slate-500">Tips and new features</p></div>
+            <label class="relative inline-flex shrink-0 cursor-pointer"><input type="checkbox" class="peer sr-only" aria-label="Product news" />
+              <span class="h-6 w-11 rounded-full bg-slate-300 transition-colors duration-300 after:absolute after:left-0.5 after:top-0.5 after:h-5 after:w-5 after:rounded-full after:bg-white after:shadow after:transition-transform after:duration-300 after:content-[''] peer-checked:bg-indigo-500 peer-checked:after:translate-x-5 peer-focus-visible:ring-2 peer-focus-visible:ring-indigo-400 dark:bg-slate-700"></span></label></li>
+            </ul></div>
+          <div class="rounded-2xl border border-slate-200 bg-white shadow-sm shadow-slate-200/70 dark:border-white/5 dark:bg-slate-800/40 dark:shadow-none dark:backdrop-blur p-6"><h2 class="font-semibold text-slate-900 dark:text-white">System Alerts</h2><p class="text-sm text-slate-500">Operational warnings for your workspace.</p>
+            <ul class="mt-2 divide-y divide-slate-200 dark:divide-white/5">
+          <li class="flex items-center justify-between gap-4 py-4"><div><p class="text-sm font-medium text-slate-900 dark:text-white">Security alerts</p><p class="text-xs text-slate-500">Suspicious activity detected</p></div>
+            <label class="relative inline-flex shrink-0 cursor-pointer"><input type="checkbox" class="peer sr-only" aria-label="Security alerts" checked />
+              <span class="h-6 w-11 rounded-full bg-slate-300 transition-colors duration-300 after:absolute after:left-0.5 after:top-0.5 after:h-5 after:w-5 after:rounded-full after:bg-white after:shadow after:transition-transform after:duration-300 after:content-[''] peer-checked:bg-indigo-500 peer-checked:after:translate-x-5 peer-focus-visible:ring-2 peer-focus-visible:ring-indigo-400 dark:bg-slate-700"></span></label></li>
+          <li class="flex items-center justify-between gap-4 py-4"><div><p class="text-sm font-medium text-slate-900 dark:text-white">Server downtime</p><p class="text-xs text-slate-500">Outage and maintenance notices</p></div>
+            <label class="relative inline-flex shrink-0 cursor-pointer"><input type="checkbox" class="peer sr-only" aria-label="Server downtime" checked />
+              <span class="h-6 w-11 rounded-full bg-slate-300 transition-colors duration-300 after:absolute after:left-0.5 after:top-0.5 after:h-5 after:w-5 after:rounded-full after:bg-white after:shadow after:transition-transform after:duration-300 after:content-[''] peer-checked:bg-indigo-500 peer-checked:after:translate-x-5 peer-focus-visible:ring-2 peer-focus-visible:ring-indigo-400 dark:bg-slate-700"></span></label></li>
+          <li class="flex items-center justify-between gap-4 py-4"><div><p class="text-sm font-medium text-slate-900 dark:text-white">Failed payments</p><p class="text-xs text-slate-500">Billing problems</p></div>
+            <label class="relative inline-flex shrink-0 cursor-pointer"><input type="checkbox" class="peer sr-only" aria-label="Failed payments" checked />
+              <span class="h-6 w-11 rounded-full bg-slate-300 transition-colors duration-300 after:absolute after:left-0.5 after:top-0.5 after:h-5 after:w-5 after:rounded-full after:bg-white after:shadow after:transition-transform after:duration-300 after:content-[''] peer-checked:bg-indigo-500 peer-checked:after:translate-x-5 peer-focus-visible:ring-2 peer-focus-visible:ring-indigo-400 dark:bg-slate-700"></span></label></li>
+          <li class="flex items-center justify-between gap-4 py-4"><div><p class="text-sm font-medium text-slate-900 dark:text-white">Low stock</p><p class="text-xs text-slate-500">When a product runs low</p></div>
+            <label class="relative inline-flex shrink-0 cursor-pointer"><input type="checkbox" class="peer sr-only" aria-label="Low stock" />
+              <span class="h-6 w-11 rounded-full bg-slate-300 transition-colors duration-300 after:absolute after:left-0.5 after:top-0.5 after:h-5 after:w-5 after:rounded-full after:bg-white after:shadow after:transition-transform after:duration-300 after:content-[''] peer-checked:bg-indigo-500 peer-checked:after:translate-x-5 peer-focus-visible:ring-2 peer-focus-visible:ring-indigo-400 dark:bg-slate-700"></span></label></li>
+            </ul></div>
+        </div>
+        <div class="rounded-2xl border border-slate-200 bg-white shadow-sm shadow-slate-200/70 dark:border-white/5 dark:bg-slate-800/40 dark:shadow-none dark:backdrop-blur p-6"><h2 class="font-semibold text-slate-900 dark:text-white">Notify me via</h2><p class="text-sm text-slate-500">Choose where alerts are delivered.</p>
+          <div class="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4"><label class="flex cursor-pointer items-center gap-3 rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium text-slate-700 transition-all duration-300 hover:border-indigo-400/50 dark:border-white/10 dark:text-slate-300"><input type="checkbox" class="h-4 w-4 rounded border-slate-300 bg-white text-indigo-500 focus:ring-2 focus:ring-indigo-400 focus:ring-offset-0 dark:border-slate-600 dark:bg-slate-800" checked />Email</label><label class="flex cursor-pointer items-center gap-3 rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium text-slate-700 transition-all duration-300 hover:border-indigo-400/50 dark:border-white/10 dark:text-slate-300"><input type="checkbox" class="h-4 w-4 rounded border-slate-300 bg-white text-indigo-500 focus:ring-2 focus:ring-indigo-400 focus:ring-offset-0 dark:border-slate-600 dark:bg-slate-800" checked />Push notifications</label><label class="flex cursor-pointer items-center gap-3 rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium text-slate-700 transition-all duration-300 hover:border-indigo-400/50 dark:border-white/10 dark:text-slate-300"><input type="checkbox" class="h-4 w-4 rounded border-slate-300 bg-white text-indigo-500 focus:ring-2 focus:ring-indigo-400 focus:ring-offset-0 dark:border-slate-600 dark:bg-slate-800" />SMS</label><label class="flex cursor-pointer items-center gap-3 rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium text-slate-700 transition-all duration-300 hover:border-indigo-400/50 dark:border-white/10 dark:text-slate-300"><input type="checkbox" class="h-4 w-4 rounded border-slate-300 bg-white text-indigo-500 focus:ring-2 focus:ring-indigo-400 focus:ring-offset-0 dark:border-slate-600 dark:bg-slate-800" />Slack</label></div>
+          <div class="mt-8 flex items-center gap-4"><button type="submit" class="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-violet-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-indigo-500/30 transition-all duration-300 hover:scale-105 hover:shadow-indigo-500/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300">Save notifications</button><p class="save-msg hidden text-sm font-medium text-emerald-600 dark:text-emerald-400" role="status">Preferences saved</p></div>
+        </div>
+      </form>
+
+    </main>
+
+    <footer class="border-t border-slate-200 dark:border-white/5 px-6 py-5 text-center text-xs text-slate-500">&copy; <span id="year">2026</span> Nexus Admin. All rights reserved.</footer>
+  </div>
+
+  <!-- Shared scripts: sidebar, theme toggle and page features -->
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

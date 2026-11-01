@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nexus Admin | SaaS Dashboard Template</title>
+  <title>Dashboard | Nexus Admin</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -21,13 +21,13 @@
 </head>
 <body class="bg-slate-50 dark:bg-zinc-950 font-sans text-slate-700 dark:text-slate-300 antialiased selection:bg-indigo-500/40 selection:text-white">
 
-  <!-- Mobile overlay -->
+  <!-- Mobile sidebar overlay -->
   <div id="overlay" class="fixed inset-0 z-30 hidden bg-black/60 backdrop-blur-sm lg:hidden"></div>
 
-  <!-- ================= SIDEBAR ================= -->
+  <!-- ================= SIDEBAR (same on every page) ================= -->
   <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 flex w-64 -translate-x-full flex-col border-r border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-zinc-950 p-4 transition-transform duration-300 lg:translate-x-0" aria-label="Sidebar">
     <div class="flex items-center justify-between px-2 py-2">
-      <a href="#" class="flex items-center gap-2.5 text-lg font-bold text-slate-900 dark:text-white">
+      <a href="index.html" class="flex items-center gap-2.5 text-lg font-bold text-slate-900 dark:text-white">
         <span class="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-indigo-500 to-violet-500 shadow-lg shadow-indigo-500/30 text-white"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg></span>
         Nexus
       </a>
@@ -36,21 +36,11 @@
 
     <nav class="mt-8 flex-1 space-y-1" aria-label="Main">
       <p class="px-3 pb-2 text-xs font-semibold text-slate-500">Menu</p>
-        <a href="#" class="group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-300 bg-indigo-500/10 text-indigo-700 dark:text-white ring-1 ring-indigo-400/20" aria-current="page">
-          <span class="text-indigo-600 dark:text-indigo-400 transition-colors duration-300"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3h7v9H3zM14 3h7v5h-7zM14 12h7v9h-7zM3 16h7v5H3z"/></svg></span>Dashboard
-        </a>
-        <a href="#" class="group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-300 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white">
-          <span class="text-slate-500 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-300"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg></span>Analytics
-        </a>
-        <a href="#" class="group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-300 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white">
-          <span class="text-slate-500 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-300"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Users
-        </a>
-        <a href="#" class="group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-300 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white">
-          <span class="text-slate-500 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-300"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg></span>Products
-        </a>
-        <a href="#" class="group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-300 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white">
-          <span class="text-slate-500 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-300"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg></span>Settings
-        </a>
+        <a href="index.html" class="group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-300 active bg-indigo-500/10 text-indigo-700 ring-1 ring-indigo-400/20 dark:text-white" aria-current="page"><span class="transition-colors duration-300 text-indigo-600 dark:text-indigo-400"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3h7v9H3zM14 3h7v5h-7zM14 12h7v9h-7zM3 16h7v5H3z"/></svg></span>Dashboard</a>
+        <a href="analytics.html" class="group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-300 text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white"><span class="transition-colors duration-300 text-slate-400 group-hover:text-indigo-600 dark:text-slate-500 dark:group-hover:text-indigo-400"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg></span>Analytics</a>
+        <a href="users.html" class="group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-300 text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white"><span class="transition-colors duration-300 text-slate-400 group-hover:text-indigo-600 dark:text-slate-500 dark:group-hover:text-indigo-400"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Users</a>
+        <a href="products.html" class="group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-300 text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white"><span class="transition-colors duration-300 text-slate-400 group-hover:text-indigo-600 dark:text-slate-500 dark:group-hover:text-indigo-400"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg></span>Products</a>
+        <a href="settings.html" class="group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-300 text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white"><span class="transition-colors duration-300 text-slate-400 group-hover:text-indigo-600 dark:text-slate-500 dark:group-hover:text-indigo-400"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg></span>Settings</a>
     </nav>
 
     <!-- User mini-card -->
@@ -66,12 +56,12 @@
   <!-- ================= MAIN ================= -->
   <div class="lg:pl-64">
 
-    <!-- Sticky top navbar -->
+    <!-- Sticky top navbar (same on every page) -->
     <header class="sticky top-0 z-20 flex h-16 items-center gap-4 border-b border-slate-200 dark:border-white/5 bg-white/70 dark:bg-zinc-950/70 px-4 backdrop-blur-xl sm:px-6">
       <button id="menu-btn" type="button" class="grid h-10 w-10 place-items-center rounded-xl text-slate-700 dark:text-slate-300 ring-1 ring-slate-900/10 dark:ring-white/10 transition hover:bg-slate-100 dark:hover:bg-white/5 lg:hidden" aria-label="Open menu"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
 
       <nav aria-label="Breadcrumb" class="hidden items-center gap-2 text-sm sm:flex">
-        <a href="#" class="text-slate-500 transition hover:text-slate-900 dark:hover:text-white">Home</a><svg class="h-4 w-4 text-slate-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg><span class="font-medium text-slate-900 dark:text-white">Dashboard</span>
+        <a href="index.html" class="text-slate-500 transition hover:text-slate-900 dark:hover:text-white">Home</a><svg class="h-4 w-4 text-slate-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg><span id="crumb" class="font-medium text-slate-900 dark:text-white">Dashboard</span>
       </nav>
 
       <div class="ml-auto flex items-center gap-3">
@@ -94,7 +84,9 @@
       </div>
     </header>
 
+    <!-- ================= PAGE CONTENT: Dashboard ================= -->
     <main class="space-y-6 p-4 sm:p-6">
+      <!-- Welcome banner, stats, charts, transactions and activity feed -->
 
       <!-- Welcome banner -->
       <section class="relative overflow-hidden rounded-3xl border border-slate-200 dark:border-white/5 bg-gradient-to-r from-indigo-600/30 via-violet-600/20 to-slate-100 dark:to-slate-800/40 p-6 sm:p-8">
@@ -194,7 +186,7 @@
         <div class="overflow-hidden rounded-2xl border border-slate-200 dark:border-white/5 bg-white shadow-sm shadow-slate-200/70 dark:bg-slate-800/40 dark:shadow-none backdrop-blur xl:col-span-2">
           <div class="flex items-center justify-between p-5">
             <div><h2 class="font-semibold text-slate-900 dark:text-white">Recent Transactions</h2><p class="text-sm text-slate-500">Latest customer activity</p></div>
-            <a href="#" class="rounded-lg px-3 py-1.5 text-sm font-medium text-indigo-600 dark:text-indigo-400 transition hover:bg-indigo-500/10 hover:text-indigo-500 dark:hover:text-indigo-300">View all</a>
+            <a href="users.html" class="rounded-lg px-3 py-1.5 text-sm font-medium text-indigo-600 dark:text-indigo-400 transition hover:bg-indigo-500/10 hover:text-indigo-500 dark:hover:text-indigo-300">View all</a>
           </div>
           <div class="overflow-x-auto">
             <table class="w-full min-w-[640px] text-left text-sm">
@@ -303,32 +295,13 @@
           </div>
         </div>
       </section>
+
     </main>
 
     <footer class="border-t border-slate-200 dark:border-white/5 px-6 py-5 text-center text-xs text-slate-500">&copy; <span id="year">2026</span> Nexus Admin. All rights reserved.</footer>
   </div>
 
-  <script>
-    // Mobile sidebar toggle
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('overlay');
-    function toggle(open) {
-      sidebar.classList.toggle('-translate-x-full', !open);
-      overlay.classList.toggle('hidden', !open);
-    }
-    document.getElementById('menu-btn').addEventListener('click', () => toggle(true));
-    document.getElementById('close-btn').addEventListener('click', () => toggle(false));
-    overlay.addEventListener('click', () => toggle(false));
-
-    // Light / Dark toggle (remembers the choice)
-    document.getElementById('theme-btn').addEventListener('click', () => {
-      const dark = document.documentElement.classList.toggle('dark');
-      try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) {}
-    });
-
-    // Today's date + footer year
-    document.getElementById('today').textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  <!-- Shared scripts: sidebar, theme toggle and page features -->
+  <script src="assets/js/app.js"></script>
 </body>
 </html>
